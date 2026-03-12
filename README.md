@@ -5,7 +5,41 @@
 
 ## 1. Integrantes
 
+* [Liliana Carreño](https://github.com/Liliana-Carreno)
+* [Salome Ramirez](https://github.com/salomeramirezpi-eng)
+* [Gabriel Ortega](https://github.com/gabrieldaortegaro-arch)
+
+### 1.1 Introducción
+<p align="justify" style="text-indent:40px;">
+Los osciladores son elementos fundamentales en la mayoría de dispositivos electrónicos ya que estos ayudan a sincronizar y generar las diferentes señales, asimismo al ser periodicos sirven como un referente de tiempo. En esta práctica se utilizo el microcontrolador <code>PIC18F45K22</code> y se realizaron tres montajes diferentes de osciladores para analizar las diferencias entre estos, ver cual es más estable y con cual podemos llegar a alcanzar mayor precisión.
+</p>
+
+<p align="justify" style="text-indent:40px;">
+Para la realización de nuestros montajes se utilizó el oscilador interno del microcontrolador, un oscilador externo basado en cristal acompañado de dos condensadores y un oscilador RC conformado por una resistencia y un condensador. Despues, se analizó el comportamiento de cada uno de ellos frente a cambios bruscos de temperatura, especificamente al aumentarla. Igualmente se observó como cada uno de estos circuitos trabajaba junto con el PLL que es un multiplicador de frecuencia. 
+</p>
+
+
+### 1.2 Objetivos
+
+* Comprender el concepto de oscilador a la vez que se identifica y reconoce la importancia de este elemento en sistemas electrónicos.
+
+* Identificar los diferentes tipos de osciladores (RC, con cristal, INTOSC).
+
+* Comprender como los factores externos como la temperatura pueden afectar la precisión del oscilador.
+
+* Desarrollar habilidades de simulación, manipulación de códigos y montaje de circuitos.
+
+
 ## 2. Documentación
+
+<p align="justify" style="text-indent:40px;">
+Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practica anterior junto con algunas más, vale resaltar que en este caso, un elemento fundamental para lograr el oscilador exterior fue el <b>Cristal de 16MHz</b>, este elemento es un componente diseñado para generar una señal eléctrica con una frecuencia estable y precisa. Esto funciona aplicando un voltaje al cristal, el cual se deforma y empieza  a vibrar de manera física en determinada frecuencia, que depende de la forma en la que este cortado, esta vibración se convierte en una señal eléctrica que es lo que finalmente utilizamos como referencia. Este elemento es utilizado en diferentes circuitos por su bajo costo y gran presición.
+</p>
+
+<p align="center">
+  <img src="osci.jpg" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
 
 ### 2.1 Descripción del laboratorio
 
@@ -48,7 +82,6 @@
 
 ### INTOSC (interno) 
 
-
 ### HS
 
 ## RC
@@ -71,3 +104,8 @@
 * Enliste ventajas y desventajas de cada modo.
 
 ## 5. Referencias
+
+* Agarwal, T. (2020, June 4). Overview of Crystal Oscillator Circuit Working with applications. ElProCus - Electronic Projects for Engineering Students. https://www.elprocus.com/crystal-oscillator-circuit-and-working/
+
+* Microcontroladores_ECCI_2026-I/labs/02_lab02/README.md at main · jharamirezma/Microcontroladores_ECCI_2026-I. (n.d.). GitHub. https://github.com/jharamirezma/Microcontroladores_ECCI_2026-I/blob/main/labs/02_lab02/README.md
+
