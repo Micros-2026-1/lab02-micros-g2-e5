@@ -84,9 +84,38 @@ Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practi
 
 ### HS
 
-## RC
+### RC
 
 ## 3. Evidencias de implementación
+
+<p align="justify" style="text-indent:40px;">
+Al presentar la práctica, se iba mostrando a su vez el circuito montado y funcionando a una <b>frecuencia de 500Hz</b>, esta frecuencia no es perceptible para el ojo humano, por lo tanto la siguientes evidencias son de la implementación de cada uno de los osciladores a una frecuencia menor para que se logre percibir el parpadeo de un LED.
+</p>
+
+### INTOSC (interno):  
+
+<p align="justify" style="text-indent:40px;"> 
+En la práctica, Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practica anterior junto con algunas más, vale resaltar que en este caso, un elemento fundamental para lograr el oscilador exterior fue el <b>Cristal de 16MHz</b>, este elemento es un componente diseñado para generar una señal eléctrica con una frecuencia estable y precisa. Esto funciona aplicando un voltaje al cristal, el cual se deforma y empieza  a vibrar de manera física en determinada frecuencia, que depende de la forma en la que este cortado, esta vibración se convierte en una señal eléctrica que es lo que finalmente utilizamos como referencia. Este elemento es utilizado en diferentes circuitos por su bajo costo y gran presición.
+</p>
+
+<p align="center">
+  <img src="Interno.gif" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
+### HS
+<p align="center">
+  <img src="oscilador.gif" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
+
+### RC
+<p align="center">
+  <img src="rc.gif" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
 
 ## 4. Preguntas
 
