@@ -67,26 +67,29 @@ Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practi
 
 | Modo de oscilador | Freq. teórica Fosc | RA6 medible (CLKO)? | Freq. medida RA6 (Hz) | Freq. teórica RC0 (Hz)| Freq. medida RC0 (Hz) | Error RC0 (%) |  
 |------------------|------------------|---------------------|---------------|---------------------|---------------|---------------|
-| INTOSC (interno) | 16,000,000       | Sí                 |                     |                500                 |               |               | |
-| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |               500                 |               |               |
-| RC externo       | ~16,000,000*     | No                                    |       N/A        | 500                 |               |               | |
+| INTOSC (interno) | 16,000,000       | Sí                 |           77          |                500                 |   79            |         84.2      | |
+| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |               500                 |509.4               |       1.88        |
+| RC externo       | ~16,000,000*     | No                                    |       N/A        | 500                 |   407.3            |       18.54        | |
 
+La tabla muestra la comparación entre la frecuencia teórica y la frecuencia medida de tres modos de oscilador del microcontrolador PIC18F45K22 en temperatura normal, antes de calentarlo. El oscilador interno (INTOSC) presentó un error muy alto (84.2 %), ya que la frecuencia medida fue mucho menor que la teórica. El cristal externo (HS) fue el más preciso, con una frecuencia muy cercana a la esperada y un error pequeño de 1.88 %. Por otro lado, el oscilador RC externo tuvo un error intermedio de 18.54 %. En general, el cristal externo fue el más estable, mientras que el oscilador interno fue el menos preciso en esta prueba.
 #### Tabla 2: Medición con calor
 
 | Modo de oscilador | Freq. teórica Fosc | RA6 medible (CLKO)? | Freq. medida RA6 (Hz) | Freq. teórica RC0 (Hz)| Freq. medida RC0 (Hz) | Error RC0 (%) |  
 |------------------|------------------|---------------------|---------------|---------------------|---------------|---------------|
-| INTOSC (interno) | 16,000,000       | Sí                 |                     |                500                 |               |               | |
-| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |               500                 |               |               |
-| RC externo       | ~16,000,000*     | No                                    |       N/A        | 500                 |               |               | |
+| INTOSC (interno) | 16,000,000       | Sí                 |                     |                500                 |        32.6       |          93.48     | |
+| HS (cristal externo 16 MHz) | 16,000,000 | No |     NA      |               500                 |503.8               |         0.76      |
+| RC externo       | ~16,000,000*     | No                                    |       N/A        | 500                 |           422.39    |        15.522       | |
+
+La tabla muestra las mediciones cuando se calentó el oscilador del microcontrolador PIC18F45K22. El oscilador interno (INTOSC) presentó un error aún mayor, llegando a 93.48 %, ya que la frecuencia medida fue de 32.6 Hz en lugar de 500 Hz. El cristal externo (HS) siguió siendo el más estable, con una frecuencia de 503.8 Hz y un error muy pequeño de 0.76 %. Por su parte, el oscilador RC externo tuvo un error de 15.52 %, mostrando una variación moderada. En general, incluso con el aumento de temperatura, el cristal externo sigue siendo el más preciso, mientras que el oscilador interno es el más afectado por el calor.
 
 #### Tabla 3: Deriva
 
 | Modo de oscilador |RC0 deriva (Hz) |
 |------------------|--------------------|
-| INTOSC (interno) |                    |                
-| HS (cristal externo 16 MHz) |                |                |
-| RC externo       |                 |                
-
+| INTOSC (interno) |          421          |                
+| HS (cristal externo 16 MHz) |          9.4      |                |
+| RC externo       |              92.4   |                
+La tabla muestra la deriva de frecuencia, es decir, la diferencia entre la frecuencia teórica y la medida para cada modo de oscilador del microcontrolador. El oscilador interno (INTOSC) presentó la mayor variación con 421 Hz, lo que indica que es el más afectado por cambios como la temperatura. El cristal externo (HS) tuvo la menor deriva con 9.4 Hz, mostrando una alta estabilidad y precisión. Por otro lado, el oscilador RC externo presentó una deriva intermedia de 92.4 Hz. En conclusión, el análisis general nos muestra que el cristal externo es el más estable y preciso, mientras que el oscilador interno es el que más se ve afectado por las condiciones externas.
 
 <!-- Agregar tablas para valores usando PLL -->
 
