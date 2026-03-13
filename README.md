@@ -246,7 +246,7 @@ Para evidenciar visualmente el funcionamiento del circuito con el oscilador inte
 
 <p align="center">
   <img src="INTERNOs.gif" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 5.</b> Simulación realizada en proteus del oscilador interno. </em>
 </p>
 
 <p align="justify" style="text-indent:40px;">
@@ -255,7 +255,7 @@ En el caso del oscilador RC externo.A continuación se presenta el oscilograma c
 
 <p align="center">
   <img src="RCs.gif" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 6.</b> Simulación realizada en proteus del oscilador RC. </em>
 </p>
 
 <p align="justify" style="text-indent:40px;">
@@ -264,7 +264,7 @@ Para el oscilador basado en cristal de cuarzo.A continuación se muestra el osci
 
 <p align="center">
   <img src="CRISTALs.gif" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 7.</b> Simulación realizada en proteus del oscilador con Cristal de Cuarzo. </em>
 </p>
 
 ## 2.5 Formas de onda
@@ -275,7 +275,7 @@ Para el oscilador basado en cristal de cuarzo.A continuación se muestra el osci
 
 <p align="center">
   <img src="i1.png" width="700"><br>
-  <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
+  <em> <b> Figura 8.</b> Oscilograma del INTOSC (interno). </em>
 </p>
 
 <p align="justify" style="text-indent:40px;">
@@ -284,7 +284,7 @@ Para el oscilador basado en cristal de cuarzo.A continuación se muestra el osci
 
 <p align="center">
   <img src="c1.png" width="700"><br>
-  <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
+  <em> <b> Figura 9.</b> Oscilograma del Cristal. </em>
 </p>
 
 <p align="justify" style="text-indent:40px;">
@@ -294,7 +294,7 @@ Para el oscilador basado en cristal de cuarzo.A continuación se muestra el osci
 
 <p align="center">
   <img src="r1.png" width="700"><br>
-  <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
+  <em> <b> Figura 10.</b> Oscilograma del RC. </em>
 </p>
 
 ## 3. Evidencias de implementación
@@ -311,7 +311,7 @@ Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta
 
 <p align="center">
   <img src="Interno.gif" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 11.</b> Montaje circuito oscilador INTOSC (interno). </em>
 </p>
 
 <p align="justify" style="text-indent:40px;"> 
@@ -321,7 +321,7 @@ A continuación se muestra el oscilograma de la señal generada, ajustada a una 
 
 <p align="center">
   <img src="c6.png" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 12.</b> Oscilograma INTOSC (interno) con el LED titilando. </em>
 </p>
 
 ### HS Oscilador con Cristal:
@@ -332,7 +332,7 @@ Nuestro segundo circuito con el <b>cristal</b>, consta de el PIC la conexión ba
 
 <p align="center">
   <img src="oscilador.gif" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 13.</b> Montaje circuito oscilador con Cristal de Cuarzo. </em>
 </p>
 
 <p align="justify" style="text-indent:40px;"> 
@@ -342,7 +342,7 @@ A continuación se muestra el oscilograma de la señal resultante, configurada a
 
 <p align="center">
   <img src="tc1_.png" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 14.</b> Oscilograma con Cristal y LED titilando. </em>
 </p>
 
 ### RC
@@ -353,7 +353,7 @@ Finalmente el ultimo circuito, <b>RC</b>, consta de el PIC la conexión basica d
 
 <p align="center">
   <img src="rc.gif" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 15.</b> Montaje circuito oscilador con RC. </em>
 </p>
 
 <p align="justify" style="text-indent:40px;"> 
@@ -363,7 +363,7 @@ A continuación se presenta el oscilograma correspondiente a la señal obtenida,
 
 <p align="center">
   <img src="trc1.png" width="700"><br>
-  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+  <em> <b> Figura 16.</b> Oscilograma con RC y LED titilando. </em>
 </p>
 
 ## 4. Preguntas
