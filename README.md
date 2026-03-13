@@ -43,23 +43,144 @@ Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practi
 
 ### 2.1 Descripción del laboratorio
 
+<p align="justify" style="text-indent:40px;">
+El oscilador es el componente encargado de generar la señal de reloj, con el funcionan los temporizadores dentro del microcontrolador. En esta practica vamos a explorar diferentes modos de operación y como factores como la temperatura afectan su funcionamiento. 
+Se usaron los siguientes elementos para cada modo:
+
+1.(HS) El uso de un cristal externo de 16 MHz conectado a los pines OSC1 y OSC2.
 <p align="center">
   <img src="external1.png" width="700"><br>
   <em> <b> Figura 2.</b> Imagen de referencia de la conexión del Oscilador con Cristal. </em>
 </p>
 
+2.(INTIO67) Uso del oscilador interno, cuya frecuencia se controla mediante el registro OSCCON.
 <p align="center">
   <img src="external2.png" width="700"><br>
   <em> <b> Figura 3.</b> Imagen de referencia de la conexión del Oscilador Interno (INTOSC). </em>
 </p>
 
+3.(RC) Empleando un circuito RC externo. 
 <p align="center">
   <img src="Airbrush-IMAGE-ENHANCER-1773374322024-1773374322024.png" width="700"><br>
   <em> <b> Figura 4.</b> Imagen de referencia de la conexión del Oscilador RC. </em>
 </p>
 
+<p align="justify" style="text-indent:40px;">
+Para verificar la frecuencia del sistema, el programa genera una señal periódica aproximada de 500 Hz en el pin RC0, la cual se mide con un osciloscopio y adicionalmente se tiene la presencia de un led.
+
+<p align="justify" style="text-indent:40px;">
+Inicialmente se desarrollaron las simulaciones con el propósito de realizar una comparativa de los resultados del montaje, sin embargo la respuesta del simulador fue irregular, ya que en los casos de los osciladores con componentes externos no reaccionaba al cambio o ausencia de estos componentes.
+
+<p align="justify" style="text-indent:40px;">
+Primero se realizan los montajes de cada modo, donde en el primer modo es necesario modificar el valor de la frecuencia del oscilador, pero para el oscilador RC externo la frecuencia depende del circuito formado por la resistencia y el capacitor asi que se calcula el valor de la resistencia. Seguidamente, la frecuencia medida se compara con la frecuencia teórica para calcular el porcentaje de error. Además, se evalúa la deriva térmica calentando ligeramente el agente responsable de la oscilación en cada modo y observando posibles variaciones en la señal generada. Y de esta forma poder comprender las diferencias entre ambas fuentes de reloj, en términos de precisión, estabilidad y sensibilidad a cambios de temperatura en los sistemas.
 
 ### 2.2 Explicación del código implementado
+
+````c
+#include <xc.h>
+#include <stdint.h>
+````
+<p align="justify" style="text-indent:40px;">
+El programa inicia con la inclusión de las bibliotecas xc.h y stdint.h. La primera contiene las definiciones y configuraciones específicas del  PIC18F45K22, la segunda stdint.h permite utilizar tipos de datos de tamaño fijo, como uint16_t, lo que asegura que las variables ocupen un número de bits definido y evitando inconsistencias entre compiladores o arquitecturas.
+
+
+````c
+#pragma config WDTEN = OFF      
+#pragma config LVP = OFF        
+#pragma config PBADEN = OFF     
+#pragma config CP0 = OFF, CP1 = OFF, CP2 = OFF, CP3 = OFF  
+#pragma config BOREN = OFF      
+#pragma config FCMEN = OFF      
+#pragma config IESO = OFF
+````
+<p align="justify" style="text-indent:40px;">
+Este bloque corresponde a configuraciones generales del microcontrolador mediante una especie de "Condiciones Iniciales" #pragma config. Determinando el comportamiento del hardware desde el arranque del sistema. En este caso se desactiva el temporizador watchdog para evitar reinicios automáticos del programa, se deshabilita la programación en bajo voltaje para liberar pines de uso general y se configura el puerto B para trabajar como digital. También se desactiva la protección de código para acceder libremente al programa almacenado en la memoria y se deshabilitan funciones de supervisión del reloj como el monitor de fallo de reloj y el cambio automático entre osciladores, con el objetivo de mantener fija la fuente de reloj.
+
+````c
+#define MODE 1
+#if MODE == 1
+    #pragma config FOSC = INTIO67
+    #define USE_PLL 0
+#elif MODE == 2
+    #pragma config FOSC = HSHP
+    #define USE_PLL 0
+#elif MODE == 3
+    #pragma config FOSC = RC
+    #define USE_PLL 0
+#else
+    #error "Modo de oscilador inválido"
+#endif
+````
+<p align="justify" style="text-indent:40px;">
+En la  primera linea define el modo de operación del oscilador. Esta constante permite seleccionar qué tipo de fuente de reloj utilizará el microcontrolador durante la ejecución del programa(1,2,3). Seguidamente el bloque utiliza  "if" para configurar el tipo de oscilador que utilizará el microcontrolador. Cuando el modo seleccionado es el primero, el sistema se configura para utilizar el oscilador interno del microcontrolador. Si es el segundo caso, se utiliza un cristal externo de alta velocidad conectado a los pines del oscilador, y en el tercer caso se utiliza un oscilador RC externo formado por una resistencia y un capacitor. Si no es ninguno de estos casos, el compilador genera un Modo de oscilador inválido".
+
+
+````c
+#if MODE == 1 || MODE == 2
+    #if USE_PLL
+        #define _XTAL_FREQ 64000000UL
+    #else
+        #define _XTAL_FREQ 350000000UL
+    #endif
+#else
+    #define _XTAL_FREQ 16000000UL
+#endif
+````
+<p align="justify" style="text-indent:40px;">
+En este bloque se define la constante _XTAL_FREQ, que representa la frecuencia del oscilador. Dependiendo del modo seleccionado, la frecuencia puede corresponder al oscilador interno o al cristal externo. Si se habilita el módulo PLL, la frecuencia base se multiplica por 4 para obtener una frecuencia de operación mayor.
+
+
+````c
+void delay_ms(uint16_t ms) {
+    while(ms--) {
+        __delay_ms(1);
+    }
+}
+````
+<p align="justify" style="text-indent:40px;">
+Esta función permite generar retardos en milisegundos dentro del programa con uint16_t ms utiliza un ciclo repetitivo que ejecuta la función __delay_ms(1) cada vez. 
+
+````c
+void init_pins(void) {
+    TRISCbits.TRISC0 = 0;
+    LATCbits.LATC0 = 0;
+
+    if(MODE == 1 || (MODE == 2 && USE_PLL)) {
+        TRISAbits.TRISA6 = 0;
+        LATAbits.LATA6 = 0;
+    }
+}
+````
+<p align="justify" style="text-indent:40px;">
+Esta otra función se encarga de configurar los pines. El pin RC0 se configura como salida digital mediante el registro TRISC y se establece su estado inicial en nivel lógico "0" utilizando el registro LATC. Tambien dependiendo del modo de oscilador seleccionado, el pin RA6 puede configurarse como salida digital para permitir la observación de la señal de reloj del sistema.
+
+````c
+void init_oscillator(void) {
+#if USE_PLL
+    OSCCONbits.SPLLEN = 1;
+#endif
+}
+````
+<p align="justify" style="text-indent:40px;">
+Y esta función se encarga de configurar la posibilidad de habilitar el módulo PLL que multiplica la frecuencia del oscilador, si esta opción se encuentra activada, el programa habilita el bit correspondiente dentro del registro OSCCON para acticar el multiplicador interno.
+
+
+````c
+void main(void) {
+    init_pins();
+    init_oscillator();
+
+    while(1) {
+        LATCbits.LATC0 = 1;
+        delay_ms(1);
+        LATCbits.LATC0 = 0;
+        delay_ms(1);
+    }
+}
+````
+<p align="justify" style="text-indent:40px;">
+Finalmente bloque corresponde al programa principal. Se ejecutan las funciones de inicialización que configuran los pines y el sistema de reloj del microcontrolador. Y se ejecuta un ciclo infinito donde se controla el estado del pin RC0. El programa coloca el pin en "1", espera un milisegundo utilizando la función de retardo y luego lo coloca en "0", esperando nuevamente un milisegundo antes de repetir el proceso. 
+
 
 ### 2.3 Análisis y comparación
 
