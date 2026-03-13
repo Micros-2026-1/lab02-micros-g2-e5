@@ -294,7 +294,7 @@ Para el oscilador basado en cristal de cuarzo, la frecuencia observable se ajust
 A continuación se muestra el oscilograma de la señal resultante, configurada a una frecuencia que permite observar el titileo del LED.
 
 <p align="center">
-  <img src="tc1.png" width="700"><br>
+  <img src="tc1_.png" width="700"><br>
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
