@@ -321,11 +321,13 @@ A continuación se presenta el oscilograma correspondiente a la señal obtenida,
 ## 4. Preguntas
 
 * ¿En qué modo se obtuvo la medición más cercana a la frecuencia teórica?
+ La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz
 
 * ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
+Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la temperatura se observaron cambios en la frecuencia medida de los osciladores, en dos de ellos bajo mientras que en RC aumento, pensamos que esto ocurre porque la temperatura altera parámetros eléctricos internos del microcontrolador y de los componentes externos. En el caso del RC, la resistencia y la capacitancia varían con la temperatura, mientras que en el oscilador interno cambian propiedades del circuito electrónico.
 
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
-
+El oscilador de cristal fue el que tuvo mas estabilidad por lo que presenta un porcentaje de error a los demás, esto es principalmente debido al cristal de cuarzo.
 
 * Explique cómo usar RC0 para estimar la frecuencia del oscilador cuando RA6 no está disponible.
 
