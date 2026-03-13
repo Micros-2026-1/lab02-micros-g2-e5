@@ -233,9 +233,24 @@ La tabla muestra la deriva de frecuencia, es decir, la diferencia entre la frecu
 
 ### INTOSC (interno) 
 
+<p align="center">
+  <img src="i1.png" width="700"><br>
+  <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
+</p>
+
 ### HS
 
+<p align="center">
+  <img src="c1.png" width="700"><br>
+  <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
+</p>
+
 ### RC
+
+<p align="center">
+  <img src="r1.png" width="700"><br>
+  <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
+</p>
 
 ## 3. Evidencias de implementación
 
@@ -254,6 +269,15 @@ Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
+<p align="justify" style="text-indent:40px;"> 
+Para evidenciar visualmente el funcionamiento del circuito con el oscilador interno del microcontrolador PIC18F45K22, se redujo la frecuencia modificando el valor configurado en el código.
+A continuación se muestra el oscilograma de la señal generada, ajustada a una frecuencia observable mediante el titileo del LED.
+
+<p align="center">
+  <img src="c6.gif" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
 ### HS Oscilador con Cristal:
 
 <p align="justify" style="text-indent:40px;"> 
@@ -265,6 +289,14 @@ Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
+<p align="justify" style="text-indent:40px;"> 
+Para el oscilador basado en cristal de cuarzo, la frecuencia observable se ajustó modificando los valores de los capacitores asociados al cristal.
+A continuación se muestra el oscilograma de la señal resultante, configurada a una frecuencia que permite observar el titileo del LED.
+
+<p align="center">
+  <img src="tc1.gif" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
 
 ### RC
 
@@ -277,6 +309,14 @@ Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
+<p align="justify" style="text-indent:40px;"> 
+En el caso del oscilador RC externo, la frecuencia del circuito se redujo modificando el valor de la resistencia del arreglo RC.
+A continuación se presenta el oscilograma correspondiente a la señal obtenida, ajustada a una frecuencia visible para observar el titileo del LED.
+
+<p align="center">
+  <img src="trc1.gif" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
 
 ## 4. Preguntas
 
