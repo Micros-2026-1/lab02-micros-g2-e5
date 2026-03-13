@@ -46,6 +46,7 @@ Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practi
 <p align="justify" style="text-indent:40px;">
 El oscilador es el componente encargado de generar la señal de reloj, con el funcionan los temporizadores dentro del microcontrolador. En esta practica vamos a explorar diferentes modos de operación y como factores como la temperatura afectan su funcionamiento. 
 Se usaron los siguientes elementos para cada modo:
+</p>
 
 ### 1. (HS) El uso de un cristal externo de 16 MHz conectado a los pines OSC1 y OSC2.
 <p align="center">
@@ -67,9 +68,11 @@ Se usaron los siguientes elementos para cada modo:
 
 <p align="justify" style="text-indent:40px;">
 Para verificar la frecuencia del sistema, el programa genera una señal periódica aproximada de 500 Hz en el pin RC0, la cual se mide con un osciloscopio y adicionalmente se tiene la presencia de un led.
+</p>
 
 <p align="justify" style="text-indent:40px;">
 Primero se realizan los montajes de cada modo, donde en el primer modo es necesario modificar el valor de la frecuencia del oscilador, pero para el oscilador RC externo la frecuencia depende del circuito formado por la resistencia y el capacitor asi que se calcula el valor de la resistencia. Seguidamente, la frecuencia medida se compara con la frecuencia teórica para calcular el porcentaje de error. Además, se evalúa la deriva térmica calentando ligeramente el agente responsable de la oscilación en cada modo y observando posibles variaciones en la señal generada. Y de esta forma poder comprender las diferencias entre ambas fuentes de reloj, en términos de precisión, estabilidad y sensibilidad a cambios de temperatura en los sistemas.
+</p>
 
 ### 2.2 Explicación del código implementado
 
@@ -79,6 +82,7 @@ Primero se realizan los montajes de cada modo, donde en el primer modo es necesa
 ````
 <p align="justify" style="text-indent:40px;">
 El programa inicia con la inclusión de las bibliotecas xc.h y stdint.h. La primera contiene las definiciones y configuraciones específicas del  PIC18F45K22, la segunda stdint.h permite utilizar tipos de datos de tamaño fijo, como uint16_t, lo que asegura que las variables ocupen un número de bits definido y evitando inconsistencias entre compiladores o arquitecturas.
+</p>
 
 
 ````c
@@ -92,6 +96,7 @@ El programa inicia con la inclusión de las bibliotecas xc.h y stdint.h. La prim
 ````
 <p align="justify" style="text-indent:40px;">
 Este bloque corresponde a configuraciones generales del microcontrolador mediante una especie de "Condiciones Iniciales" #pragma config. Determinando el comportamiento del hardware desde el arranque del sistema. En este caso se desactiva el temporizador watchdog para evitar reinicios automáticos del programa, se deshabilita la programación en bajo voltaje para liberar pines de uso general y se configura el puerto B para trabajar como digital. También se desactiva la protección de código para acceder libremente al programa almacenado en la memoria y se deshabilitan funciones de supervisión del reloj como el monitor de fallo de reloj y el cambio automático entre osciladores, con el objetivo de mantener fija la fuente de reloj.
+</p>
 
 ````c
 #define MODE 1
@@ -110,7 +115,7 @@ Este bloque corresponde a configuraciones generales del microcontrolador mediant
 ````
 <p align="justify" style="text-indent:40px;">
 En la  primera linea define el modo de operación del oscilador. Esta constante permite seleccionar qué tipo de fuente de reloj utilizará el microcontrolador durante la ejecución del programa(1,2,3). Seguidamente el bloque utiliza  "if" para configurar el tipo de oscilador que utilizará el microcontrolador. Cuando el modo seleccionado es el primero, el sistema se configura para utilizar el oscilador interno del microcontrolador. Si es el segundo caso, se utiliza un cristal externo de alta velocidad conectado a los pines del oscilador, y en el tercer caso se utiliza un oscilador RC externo formado por una resistencia y un capacitor. Si no es ninguno de estos casos, el compilador genera un Modo de oscilador inválido".
-
+</p>
 
 ````c
 #if MODE == 1 || MODE == 2
@@ -125,6 +130,7 @@ En la  primera linea define el modo de operación del oscilador. Esta constante 
 ````
 <p align="justify" style="text-indent:40px;">
 En este bloque se define la constante _XTAL_FREQ, que representa la frecuencia del oscilador. Dependiendo del modo seleccionado, la frecuencia puede corresponder al oscilador interno o al cristal externo. Si se habilita el módulo PLL, la frecuencia base se multiplica por 4 para obtener una frecuencia de operación mayor.
+</p>
 
 
 ````c
@@ -136,6 +142,7 @@ void delay_ms(uint16_t ms) {
 ````
 <p align="justify" style="text-indent:40px;">
 Esta función permite generar retardos en milisegundos dentro del programa con uint16_t ms utiliza un ciclo repetitivo que ejecuta la función __delay_ms(1) cada vez. 
+</p>
 
 ````c
 void init_pins(void) {
@@ -150,6 +157,7 @@ void init_pins(void) {
 ````
 <p align="justify" style="text-indent:40px;">
 Esta otra función se encarga de configurar los pines. El pin RC0 se configura como salida digital mediante el registro TRISC y se establece su estado inicial en nivel lógico "0" utilizando el registro LATC. Tambien dependiendo del modo de oscilador seleccionado, el pin RA6 puede configurarse como salida digital para permitir la observación de la señal de reloj del sistema.
+</p>
 
 ````c
 void init_oscillator(void) {
@@ -160,6 +168,7 @@ void init_oscillator(void) {
 ````
 <p align="justify" style="text-indent:40px;">
 Y esta función se encarga de configurar la posibilidad de habilitar el módulo PLL que multiplica la frecuencia del oscilador, si esta opción se encuentra activada, el programa habilita el bit correspondiente dentro del registro OSCCON para acticar el multiplicador interno.
+</p>
 
 
 ````c
@@ -177,6 +186,7 @@ void main(void) {
 ````
 <p align="justify" style="text-indent:40px;">
 Finalmente bloque corresponde al programa principal. Se ejecutan las funciones de inicialización que configuran los pines y el sistema de reloj del microcontrolador. Y se ejecuta un ciclo infinito donde se controla el estado del pin RC0. El programa coloca el pin en "1", espera un milisegundo utilizando la función de retardo y luego lo coloca en "0", esperando nuevamente un milisegundo antes de repetir el proceso. 
+</p>
 
 
 ### 2.3 Análisis y comparación
@@ -228,9 +238,11 @@ La tabla muestra la deriva de frecuencia, es decir, la diferencia entre la frecu
 
 <p align="justify" style="text-indent:40px;">
 Inicialmente se desarrollaron las simulaciones con el propósito de realizar una comparativa de los resultados del montaje, sin embargo la respuesta del simulador fue irregular, ya que en los casos de los osciladores con componentes externos no reaccionaba al cambio o ausencia de estos componentes.
+</p>
 
 <p align="justify" style="text-indent:40px;">
 Para evidenciar visualmente el funcionamiento del circuito con el oscilador interno del microcontrolador PIC18F45K22,se muestra el oscilograma de la señal generada.
+</p>
 
 <p align="center">
   <img src="INTERNOs.gif" width="700"><br>
@@ -239,6 +251,7 @@ Para evidenciar visualmente el funcionamiento del circuito con el oscilador inte
 
 <p align="justify" style="text-indent:40px;">
 En el caso del oscilador RC externo.A continuación se presenta el oscilograma correspondiente a la señal obtenida.
+</p>
 
 <p align="center">
   <img src="RCs.gif" width="700"><br>
@@ -247,6 +260,7 @@ En el caso del oscilador RC externo.A continuación se presenta el oscilograma c
 
 <p align="justify" style="text-indent:40px;">
 Para el oscilador basado en cristal de cuarzo.A continuación se muestra el oscilograma de la señal resultante.
+</p>
 
 <p align="center">
   <img src="CRISTALs.gif" width="700"><br>
@@ -255,21 +269,28 @@ Para el oscilador basado en cristal de cuarzo.A continuación se muestra el osci
 
 ## 2.5 Formas de onda
 
-### INTOSC (interno) 
+<p align="justify" style="text-indent:40px;">
+<b>INTOSC (interno): </b> En este oscilograma podemos observar una señal cuadrada que tiene un gran porcentaje de simetría, presenta un voltaje pico a pico de casi 5V y el valor son los 500Hz que se pedían vemos una señal que presenta cierto nivel de ruido, pero fue fácil de leer con el osciloscopio y se mantenía muy estable. 
+</p>
 
 <p align="center">
   <img src="i1.png" width="700"><br>
   <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
 </p>
 
-### HS
+<p align="justify" style="text-indent:40px;">
+<b>HS (Oscilador con Cristal):</b>Al utilizar el cristal de cuarzo algo que resaltamos es que la frecuencia se mantenía muy estable, sin embargo, el nivel de ruido en comparación con el anterior es mucho mayor, a su vez el voltaje de salida fue de 2,89V lo que es casi la mitad del voltaje de salida que lográbamos con el oscilador interno.
+</p>
 
 <p align="center">
   <img src="c1.png" width="700"><br>
   <em> <b> Figura 1.</b> Oscilograma del Cristal. </em>
 </p>
 
-### RC
+<p align="justify" style="text-indent:40px;">
+<b>RC (Resistencia-Capacitor):</b> Este ultimo oscilograma nos muestra que un voltaje de salida de 5.23V el cual es el mayor de los tres osciladores, de igual forma en este caso la frecuencia se nos pasó un poco, aunque esto también se puede deber a que los valores de los componentes calculados ya que no siempre concuerdan con los valores que encontramos comercialmente. 
+</p>
+
 
 <p align="center">
   <img src="r1.png" width="700"><br>
@@ -296,6 +317,7 @@ Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta
 <p align="justify" style="text-indent:40px;"> 
 Para evidenciar visualmente el funcionamiento del circuito con el oscilador interno del microcontrolador PIC18F45K22, se redujo la frecuencia modificando el valor configurado en el código.
 A continuación se muestra el oscilograma de la señal generada, ajustada a una frecuencia observable mediante el titileo del LED.
+</p>
 
 <p align="center">
   <img src="c6.png" width="700"><br>
@@ -316,6 +338,7 @@ Nuestro segundo circuito con el <b>cristal</b>, consta de el PIC la conexión ba
 <p align="justify" style="text-indent:40px;"> 
 Para el oscilador basado en cristal de cuarzo, la frecuencia observable se ajustó modificando los valores de los capacitores asociados al cristal.
 A continuación se muestra el oscilograma de la señal resultante, configurada a una frecuencia que permite observar el titileo del LED.
+</p>
 
 <p align="center">
   <img src="tc1_.png" width="700"><br>
@@ -336,6 +359,7 @@ Finalmente el ultimo circuito, <b>RC</b>, consta de el PIC la conexión basica d
 <p align="justify" style="text-indent:40px;"> 
 En el caso del oscilador RC externo, la frecuencia del circuito se redujo modificando el valor de la resistencia del arreglo RC.
 A continuación se presenta el oscilograma correspondiente a la señal obtenida, ajustada a una frecuencia visible para observar el titileo del LED.
+</p>
 
 <p align="center">
   <img src="trc1.png" width="700"><br>
@@ -345,27 +369,35 @@ A continuación se presenta el oscilograma correspondiente a la señal obtenida,
 ## 4. Preguntas
 
 * ¿En qué modo se obtuvo la medición más cercana a la frecuencia teórica?
-<<<<<<< HEAD
+
 <p align="justify" style="text-indent:40px;">
- La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz
+ La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz.
+ </p>
 
 * ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
+
 <p align="justify" style="text-indent:40px;">
 Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la temperatura se observaron cambios en la frecuencia medida de los osciladores, en dos de ellos bajo mientras que en RC aumento, pensamos que esto ocurre porque la temperatura altera parámetros eléctricos internos del microcontrolador y de los componentes externos. En el caso del RC, la resistencia y la capacitancia varían con la temperatura, mientras que en el oscilador interno cambian propiedades del circuito electrónico.
+</p>
 
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
+
 <p align="justify" style="text-indent:40px;">
-=======
 La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz.
+</p>
 
 * ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
 
+<p align="justify" style="text-indent:40px;">
 Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la temperatura se observaron cambios en la frecuencia medida de los osciladores, en dos de ellos bajo mientras que en RC aumento, pensamos que esto ocurre porque la temperatura altera parámetros eléctricos internos del microcontrolador y de los componentes externos. En el caso del RC, la resistencia y la capacitancia varían con la temperatura, mientras que en el oscilador interno cambian propiedades del circuito electrónico.
+</p>
 
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
 
->>>>>>> 0ab1f751f6391be0f43d91fa4cc68c50d1a0303e
+<p align="justify" style="text-indent:40px;">
 El oscilador de cristal fue el que tuvo mas estabilidad por lo que presenta un porcentaje de error a los demás, esto es principalmente debido al cristal de cuarzo.
+</p>
+
 
 * Explique cómo usar RC0 para estimar la frecuencia del oscilador cuando RA6 no está disponible.
 
@@ -374,6 +406,12 @@ El oscilador de cristal fue el que tuvo mas estabilidad por lo que presenta un p
 * Enliste ventajas y desventajas de cada modo.
 
 ## 5. Conclusiones
+
+* Los osciladores son elementos fundamentales para los circuitos electrónicos, estos permiten que las señales se sincronicen y son un referente de tiempo para muchos circuitos, de igual forma los osciladores permiten generar otras señales o pulsos que constantes que se pueden usar en contadores, relojes, entre otras aplicaciones.
+
+* De los tres osciladores desarrollados en clase, se pudo observar que con el que conseguíamos mayor voltaje de salida fue el del RC, ya que en las modificaciones realizadas este siempre mantuvo mayor voltaje que los otros.
+
+* Hemos de tener en cuenta que los factores externos tales como la temperatura afectan la respuesta de los osciladores, esto se pudo evidenciar al aumentar la temperatura de los componentes observando lo que se conoce como deriva y de los tres el que mantuvo mayor estabilidad fue el del cristal de cuarzo.
 
 ## 6. Referencias
 
