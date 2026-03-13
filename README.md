@@ -43,6 +43,22 @@ Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practi
 
 ### 2.1 Descripción del laboratorio
 
+<p align="center">
+  <img src="external1.png" width="700"><br>
+  <em> <b> Figura 2.</b> Imagen de referencia de la conexión del Oscilador con Cristal. </em>
+</p>
+
+<p align="center">
+  <img src="external2.png" width="700"><br>
+  <em> <b> Figura 3.</b> Imagen de referencia de la conexión del Oscilador Interno (INTOSC). </em>
+</p>
+
+<p align="center">
+  <img src="Airbrush-IMAGE-ENHANCER-1773374322024-1773374322024.png" width="700"><br>
+  <em> <b> Figura 4.</b> Imagen de referencia de la conexión del Oscilador RC. </em>
+</p>
+
+
 ### 2.2 Explicación del código implementado
 
 ### 2.3 Análisis y comparación
