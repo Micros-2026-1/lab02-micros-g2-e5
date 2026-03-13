@@ -274,7 +274,7 @@ Para evidenciar visualmente el funcionamiento del circuito con el oscilador inte
 A continuación se muestra el oscilograma de la señal generada, ajustada a una frecuencia observable mediante el titileo del LED.
 
 <p align="center">
-  <img src="c6.gif" width="700"><br>
+  <img src="c6.png" width="700"><br>
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
@@ -294,7 +294,7 @@ Para el oscilador basado en cristal de cuarzo, la frecuencia observable se ajust
 A continuación se muestra el oscilograma de la señal resultante, configurada a una frecuencia que permite observar el titileo del LED.
 
 <p align="center">
-  <img src="tc1.gif" width="700"><br>
+  <img src="tc1.png" width="700"><br>
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
@@ -314,7 +314,7 @@ En el caso del oscilador RC externo, la frecuencia del circuito se redujo modifi
 A continuación se presenta el oscilograma correspondiente a la señal obtenida, ajustada a una frecuencia visible para observar el titileo del LED.
 
 <p align="center">
-  <img src="trc1.gif" width="700"><br>
+  <img src="trc1.png" width="700"><br>
   <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
 </p>
 
