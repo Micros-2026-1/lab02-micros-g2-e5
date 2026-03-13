@@ -69,9 +69,6 @@ Se usaron los siguientes elementos para cada modo:
 Para verificar la frecuencia del sistema, el programa genera una señal periódica aproximada de 500 Hz en el pin RC0, la cual se mide con un osciloscopio y adicionalmente se tiene la presencia de un led.
 
 <p align="justify" style="text-indent:40px;">
-Inicialmente se desarrollaron las simulaciones con el propósito de realizar una comparativa de los resultados del montaje, sin embargo la respuesta del simulador fue irregular, ya que en los casos de los osciladores con componentes externos no reaccionaba al cambio o ausencia de estos componentes.
-
-<p align="justify" style="text-indent:40px;">
 Primero se realizan los montajes de cada modo, donde en el primer modo es necesario modificar el valor de la frecuencia del oscilador, pero para el oscilador RC externo la frecuencia depende del circuito formado por la resistencia y el capacitor asi que se calcula el valor de la resistencia. Seguidamente, la frecuencia medida se compara con la frecuencia teórica para calcular el porcentaje de error. Además, se evalúa la deriva térmica calentando ligeramente el agente responsable de la oscilación en cada modo y observando posibles variaciones en la señal generada. Y de esta forma poder comprender las diferencias entre ambas fuentes de reloj, en términos de precisión, estabilidad y sensibilidad a cambios de temperatura en los sistemas.
 
 ### 2.2 Explicación del código implementado
@@ -229,6 +226,33 @@ La tabla muestra la deriva de frecuencia, es decir, la diferencia entre la frecu
 
 ## 2.4 Diagramas
 
+<p align="justify" style="text-indent:40px;">
+Inicialmente se desarrollaron las simulaciones con el propósito de realizar una comparativa de los resultados del montaje, sin embargo la respuesta del simulador fue irregular, ya que en los casos de los osciladores con componentes externos no reaccionaba al cambio o ausencia de estos componentes.
+
+<p align="justify" style="text-indent:40px;">
+Para evidenciar visualmente el funcionamiento del circuito con el oscilador interno del microcontrolador PIC18F45K22,se muestra el oscilograma de la señal generada.
+
+<p align="center">
+  <img src="INTERNO.mp4" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
+<p align="justify" style="text-indent:40px;">
+En el caso del oscilador RC externo.A continuación se presenta el oscilograma correspondiente a la señal obtenida.
+
+<p align="center">
+  <img src="RC.mp4" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
+<p align="justify" style="text-indent:40px;">
+Para el oscilador basado en cristal de cuarzo.A continuación se muestra el oscilograma de la señal resultante.
+
+<p align="center">
+  <img src="CRISTAL.mp4" width="700"><br>
+  <em> <b> Figura 1.</b> Imagen de referencia del Cristal de 16MHz. </em>
+</p>
+
 ## 2.5 Formas de onda
 
 ### INTOSC (interno) 
@@ -321,12 +345,15 @@ A continuación se presenta el oscilograma correspondiente a la señal obtenida,
 ## 4. Preguntas
 
 * ¿En qué modo se obtuvo la medición más cercana a la frecuencia teórica?
+<p align="justify" style="text-indent:40px;">
  La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz
 
 * ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
+<p align="justify" style="text-indent:40px;">
 Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la temperatura se observaron cambios en la frecuencia medida de los osciladores, en dos de ellos bajo mientras que en RC aumento, pensamos que esto ocurre porque la temperatura altera parámetros eléctricos internos del microcontrolador y de los componentes externos. En el caso del RC, la resistencia y la capacitancia varían con la temperatura, mientras que en el oscilador interno cambian propiedades del circuito electrónico.
 
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
+<p align="justify" style="text-indent:40px;">
 El oscilador de cristal fue el que tuvo mas estabilidad por lo que presenta un porcentaje de error a los demás, esto es principalmente debido al cristal de cuarzo.
 
 * Explique cómo usar RC0 para estimar la frecuencia del oscilador cuando RA6 no está disponible.
