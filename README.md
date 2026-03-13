@@ -47,19 +47,19 @@ Para nuestra práctica se utilizaron las mismas <b>herramientas</b> de la practi
 El oscilador es el componente encargado de generar la señal de reloj, con el funcionan los temporizadores dentro del microcontrolador. En esta practica vamos a explorar diferentes modos de operación y como factores como la temperatura afectan su funcionamiento. 
 Se usaron los siguientes elementos para cada modo:
 
-1.(HS) El uso de un cristal externo de 16 MHz conectado a los pines OSC1 y OSC2.
+### 1. (HS) El uso de un cristal externo de 16 MHz conectado a los pines OSC1 y OSC2.
 <p align="center">
   <img src="external1.png" width="700"><br>
   <em> <b> Figura 2.</b> Imagen de referencia de la conexión del Oscilador con Cristal. </em>
 </p>
 
-2.(INTIO67) Uso del oscilador interno, cuya frecuencia se controla mediante el registro OSCCON.
+### 2.(INTIO67) Uso del oscilador interno, cuya frecuencia se controla mediante el registro OSCCON.
 <p align="center">
   <img src="external2.png" width="700"><br>
   <em> <b> Figura 3.</b> Imagen de referencia de la conexión del Oscilador Interno (INTOSC). </em>
 </p>
 
-3.(RC) Empleando un circuito RC externo. 
+### 3.(RC) Empleando un circuito RC externo. 
 <p align="center">
   <img src="Airbrush-IMAGE-ENHANCER-1773374322024-1773374322024.png" width="700"><br>
   <em> <b> Figura 4.</b> Imagen de referencia de la conexión del Oscilador RC. </em>
@@ -281,7 +281,7 @@ A continuación se muestra el oscilograma de la señal generada, ajustada a una 
 ### HS Oscilador con Cristal:
 
 <p align="justify" style="text-indent:40px;"> 
-Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta de el PIC la conexión basica de este al PICKIT, acompañado de la resistencia y el LED. Es una conexión simple y para que funcionase este modo primero lo más importante era ajustar la _XTAL_FREQ dependiendo de que valor de frecuencia nesecitasemos.
+Nuestro segundo circuito con el <b>cristal</b>, consta de el PIC la conexión basica de este al PICKIT, acompañado del oscilador de 16Mhz jutno con un condensaddor en cada una de sus terminales y estos van conectados a tierra, tambien se modifico la frecuencia desde el codigo y se verifico que el valor de los condensadores funcionase bien para este ejercicio.
 </p>
 
 <p align="center">
@@ -301,7 +301,7 @@ A continuación se muestra el oscilograma de la señal resultante, configurada a
 ### RC
 
 <p align="justify" style="text-indent:40px;"> 
-Nuestro primer circuito con la utilización del <b>oscilador interno</b>, consta de el PIC la conexión basica de este al PICKIT, acompañado de la resistencia y el LED. Es una conexión simple y para que funcionase este modo primero lo más importante era ajustar la _XTAL_FREQ dependiendo de que valor de frecuencia nesecitasemos.
+Finalmente el ultimo circuito, <b>RC</b>, consta de el PIC la conexión basica de este al PICKIT, acompañado de una conexión de condensador-resistencia, la cual se calculaba para lograr establecer la frecuencia deseada. En este último las modificaciones a la frecuencia las estableciamos por medio de los componentes.
 </p>
 
 <p align="center">
@@ -321,12 +321,14 @@ A continuación se presenta el oscilograma correspondiente a la señal obtenida,
 ## 4. Preguntas
 
 * ¿En qué modo se obtuvo la medición más cercana a la frecuencia teórica?
- La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz
+La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz.
 
 * ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
+
 Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la temperatura se observaron cambios en la frecuencia medida de los osciladores, en dos de ellos bajo mientras que en RC aumento, pensamos que esto ocurre porque la temperatura altera parámetros eléctricos internos del microcontrolador y de los componentes externos. En el caso del RC, la resistencia y la capacitancia varían con la temperatura, mientras que en el oscilador interno cambian propiedades del circuito electrónico.
 
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
+
 El oscilador de cristal fue el que tuvo mas estabilidad por lo que presenta un porcentaje de error a los demás, esto es principalmente debido al cristal de cuarzo.
 
 * Explique cómo usar RC0 para estimar la frecuencia del oscilador cuando RA6 no está disponible.
