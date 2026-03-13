@@ -383,27 +383,26 @@ Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la tempera
 * ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
 
 <p align="justify" style="text-indent:40px;">
-La medición mas cercana a la teórica fue la del oscilador interno con 500.35Hz.
-</p>
-
-* ¿Fue posible evidenciar el fenómeno de deriva? ¿Qué factores podrían explicar la variación de frecuencia al calentar el PIC?
-
-<p align="justify" style="text-indent:40px;">
-Sí fue posible evidenciar el fenómeno de deriva, ya que al aumentar la temperatura se observaron cambios en la frecuencia medida de los osciladores, en dos de ellos bajo mientras que en RC aumento, pensamos que esto ocurre porque la temperatura altera parámetros eléctricos internos del microcontrolador y de los componentes externos. En el caso del RC, la resistencia y la capacitancia varían con la temperatura, mientras que en el oscilador interno cambian propiedades del circuito electrónico.
-</p>
-
-* ¿Cuál es más preciso en cuanto a frecuencia teórica vs. medida?
-
-<p align="justify" style="text-indent:40px;">
 El oscilador de cristal fue el que tuvo mas estabilidad por lo que presenta un porcentaje de error a los demás, esto es principalmente debido al cristal de cuarzo.
 </p>
 
-
 * Explique cómo usar RC0 para estimar la frecuencia del oscilador cuando RA6 no está disponible.
+
+<p align="justify" style="text-indent:40px;">
+Cuando el pin RA6 no está disponible para observar la señal de reloj del sistema, se puede estimar la frecuencia del oscilador midiendo la señal generada en el pin RC0. El programa genera una señal periódica mediante retardos que dependen directamente de la frecuencia del oscilador del microcontrolador. Al medir con un osciloscopio la frecuencia real de esta señal, es posible estimar indirectamente la frecuencia real del sistema.
+</p>
 
 * Si se quisiera duplicar la frecuencia del PIC usando PLL, ¿en qué modos se podría aplicar?
 
+<p align="justify" style="text-indent:40px;">
+El módulo PLL puede utilizarse en modos  1 y 2, el oscilador interno o el oscilador externo basado en cristal. En estos casos el PLL multiplica la frecuencia base del sistema, permitiendo aumentar la velocidad de operación del microcontrolador.
+</p>
+
 * Enliste ventajas y desventajas de cada modo.
+
+<p align="justify" style="text-indent:40px;">
+El oscilador interno tiene como principal ventaja que no requiere componentes externos y es mas simple, aunque presenta menor precisión y mayor sensibilidad a cambios de temperatura. El oscilador con cristal externo ofrece la mayor estabilidad y precisión en la frecuencia, pero requiere componentes adicionales. El oscilador RC externo es sencillo y económico de implementar pero no es tan preciso por la dependencia de las tolerancias de la resistencia y el capacitor.
+</p>
 
 ## 5. Conclusiones
 
